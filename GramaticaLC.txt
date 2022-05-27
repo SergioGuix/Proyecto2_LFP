@@ -1,0 +1,40 @@
+
+
+
+<Inicio>::= <RESULTADO> <Repetir>
+           |<JORNADA> <Repetir>
+           |<GOLES> <Repetir>
+           |<TABLA> <Repetir>
+           |<PARTIDOS> <Repetir>
+           |<TOP> <Repetir>
+           |<ADIOS> <Repetir>
+
+<Repetir>::= <RESULTADO> <Repetir>
+           |<JORNADA> <Repetir>
+           |<GOLES> <Repetir>
+           |<TABLA> <Repetir>
+           |<PARTIDOS> <Repetir>
+           |<TOP> <Repetir>
+           |<ADIOS> <Repetir>
+           |Epsilon
+
+
+<RESULTADO>::= Tk_resultado Tk_cadena tk_vs tk_cadena tk_temporada tk_año 
+<JORNADA>::= Tk_jornada Tk_numero tk_temporada tk_año <JORNADA_SIGUIENTE>
+<GOLES>::= Tk_goles Tk_condicion_gol tk_cadena tk_temporada tk_año
+<TABLA>::= Tk_tabla tk_temporada tk_año <TABLA_SIGUIENTE>
+<PARTIDOS>::= Tk_partidos tk_cadena tk_temporada tk_año <PARTIDOS_SIGUIENTE>
+<TOP>::= Tk_top Tk_condicion_top tk_temporada tk_año <TOP_SIGUIENTE>
+<ADIOS>::= Tk_adios
+
+<JORNADA_SIGUIENTE>::= tk_guion_f tk_nombre_archivo
+                    |Epsilon
+
+<TABLA_SIGUIENTE>::=  tk_guion_f tk_nombre_archivo
+                    |Epsilon
+        
+<PARTIDOS_SIGUIENTE>::=  tk_guion_ji tk_numero tk_guion_jf tk_numero
+                    |tk_guion_f tk_nombre_archivo
+
+<TOP_SIGUIENTE>::=  tk_guion_n tk_numero
+                    |Epsilon
